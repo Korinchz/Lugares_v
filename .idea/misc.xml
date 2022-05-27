@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/carlo/Documents/movil/lugares/app/src/main/res/drawable/ic_logoff.xml" value="0.201" />
         <entry key="..\:/Users/carlo/Documents/movil/lugares/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/carlo/Documents/movil/lugares/app/src/main/res/layout/activity_principal.xml" value="0.1" />
         <entry key="..\:/Users/carlo/Documents/movil/lugares/app/src/main/res/layout/content_principal.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/carlo/Documents/movil/lugares/app/src/main/res/layout/nav_header_principal.xml" value="0.1" />
+        <entry key="..\:/Users/carlo/Documents/movil/lugares/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/Users/carlo/Documents/movil/lugares/app/src/main/res/menu/principal.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

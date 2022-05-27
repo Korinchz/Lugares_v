@@ -113,16 +113,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//    //Recorte 011: exit
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.action_logoff -> {
-//                Firebase.auth.signOut()
-//                finish()
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
 
 }
