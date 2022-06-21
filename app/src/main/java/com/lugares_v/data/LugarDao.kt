@@ -16,6 +16,6 @@ interface LugarDao {
     @Delete
     suspend fun deleteLugar(lugar: Lugar)
 
-    @Query ("SELECT * FROM LUGAR")
+    @Query ( "SELECT * FROM LUGAR")
     fun getAllData() : LiveData<List<Lugar>>
 }
