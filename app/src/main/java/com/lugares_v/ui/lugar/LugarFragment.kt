@@ -29,7 +29,8 @@ class LugarFragment : Fragment() {
         _binding = FragmentLugarBinding.inflate(inflater, container, false)
         binding.addLugar.setOnClickListener {
             findNavController().navigate(R.id.action_nav_lugar_to_addLugarFragment)
-        }
+        }///ojo me sirve doble casa y ver mas
+
      //Activar el reciclador
         val lugarAdapter = LugarAdapter()
         val reciclador = binding.reciclador //tener en enlace con el dibujo de fragment lugar
