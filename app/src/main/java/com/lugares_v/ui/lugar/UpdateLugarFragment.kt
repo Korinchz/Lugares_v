@@ -46,7 +46,7 @@ class UpdateLugarFragment : Fragment() {
         binding.tvLongitud.setText(args.lugar.longitud.toString())
 
 
-        binding.btActualizar.setOnClickListener { updateLugar()}
+        binding.btUpdateLugar.setOnClickListener { updateLugar()}
         binding.btEmail.setOnClickListener{escribirCorreo()}
         binding.btPhone.setOnClickListener{ realizarllamada() }
         binding.btWeb.setOnClickListener{ verweb() }
