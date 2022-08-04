@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Lugares_v</string>
+    <string name="app_name" translatable="false">Lugares</string>
+    <string name="default_web_client_idg"
+        translatable="false">362513425463-1t9l6r0uj67343ao3teimpeafe3v998t.apps.googleusercontent.com</string>
     <string name="tv_correo">Correo</string>
     <string name="tv_clave">Contraseña</string>
     <string name="msg_fallo_registro">Falló la creación del usuario</string>

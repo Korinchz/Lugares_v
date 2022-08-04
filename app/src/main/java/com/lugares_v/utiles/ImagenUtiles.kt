@@ -26,7 +26,10 @@ class ImagenUtiles (
         btRotaL.setOnClickListener { imagen.rotation=imagen.rotation-90f }
         btRotaR.setOnClickListener { imagen.rotation=imagen.rotation+90f }
     }
-
+     private var fotoTomada:Boolean = false
+    fun getFotoTomada(): Boolean{
+        return fotoTomada
+    }
     lateinit var imagenFile: File
     private lateinit var currentPhotoPath: String
 
@@ -55,10 +58,11 @@ class ImagenUtiles (
         currentPhotoPath = image.absolutePath
         return image
     }
-
+//se pone la foto en la app
     fun actualizaFoto() {
         imagen.setImageBitmap(
             BitmapFactory.decodeFile(imagenFile.absolutePath))
+    fotoTomada=true
     }
 }
 

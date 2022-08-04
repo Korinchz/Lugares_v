@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.lugares_v.R
 import com.lugares_v.databinding.FragmentUpdateLugarBinding
 import com.lugares_v.model.Lugar
@@ -27,6 +29,10 @@ class UpdateLugarFragment : Fragment() {
     private var _binding: FragmentUpdateLugarBinding? = null
     private val binding get() = _binding!!
     private lateinit var lugarViewModel: LugarViewModel
+
+    //Objeto para escuchar el audio almacenado en la nube
+    private lateinit var mediaPlayer: MediaPlayer
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,8 +51,34 @@ class UpdateLugarFragment : Fragment() {
         binding.tvLatitud.setText(args.lugar.latitud.toString())
         binding.tvLongitud.setText(args.lugar.longitud.toString())
 
+      //se trabaja el tema del audio
+      if(args.lugar.rutaAudio?.isNotEmpty()== true){
+         //hay una ruta de un audio...
+         mediaPlayer= MediaPlayer()
+         mediaPlayer.setDataSource(args.lugar.rutaAudio)
+         mediaPlayer.prepare()
+         binding.btPlay.isEnabled=true
+       }else{
+         //No hay ruta de audio o esta vacia
+         binding.btPlay.isEnabled=false
+       }
+        //hace que suene el audio
+        binding.btPlay.setOnClickListener{mediaPlayer.start()}
 
-        binding.btUpdateLugar.setOnClickListener { updateLugar()}
+        //se trabaja el tema de la imagen
+        if(args.lugar.rutaImagen?.isNotEmpty()== true){
+            //hay una ruta de un imagen...
+            //Mostrar la imagen del lugar en el card
+            Glide.with(requireContext()) //alojar en la memoria
+                .load(args.lugar.rutaImagen)//cargar la imagen
+                .fitCenter()//la forma que quiere la imagen o formato
+                .into(binding.imagen) //pongalo la imagen en el update para dibujarlo
+
+        }
+
+
+            binding.btUpdateLugar.setOnClickListener { updateLugar()}
+
         binding.btEmail.setOnClickListener{escribirCorreo()}
         binding.btPhone.setOnClickListener{ realizarllamada() }
         binding.btWeb.setOnClickListener{ verweb() }

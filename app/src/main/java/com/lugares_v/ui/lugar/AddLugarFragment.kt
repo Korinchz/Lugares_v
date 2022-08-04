@@ -91,7 +91,7 @@ class AddLugarFragment : Fragment() {
 
     private fun subeAudio() {
         val audioFile = audioUtiles.audioFile
-        if(audioFile.exists()&& audioFile.isFile && audioFile.canRead()){ //si existe archivo y que lo lea
+        if(audioFile!= null && audioFile.exists()&& audioFile.isFile && audioFile.canRead()){ //si existe archivo y que lo lea
             //si entra al if, podemos subir el audio a la nube
             var usuario =  Firebase.auth.currentUser?.email
              val rutanube = "lugaresApp/${usuario}/audios/${audioFile.name}"
@@ -116,30 +116,34 @@ class AddLugarFragment : Fragment() {
     }
 
     private fun subeImagen(rutaAudio: String) {
-        binding.msgMensaje.text = getString(R.string.msg_subiendo_imagen)
-        val imagenFile = imagenUtiles.imagenFile
-        if(imagenFile.exists()&& imagenFile.isFile && imagenFile.canRead()){ //si existe archivo y que lo lea
-            //si entra al if, podemos subir el audio a la nube
-            var usuario =  Firebase.auth.currentUser?.email
-            val rutanube = "lugaresApp/${usuario}/imagenes/${imagenFile.name}"
+        if(imagenUtiles.getFotoTomada()) {
+            binding.msgMensaje.text = getString(R.string.msg_subiendo_imagen)
+            val imagenFile = imagenUtiles.imagenFile
+            if (imagenFile != null && imagenFile.exists() && imagenFile.isFile && imagenFile.canRead()) { //si existe archivo y que lo lea
+                //si entra al if, podemos subir el audio a la nube
+                var usuario = Firebase.auth.currentUser?.email
+                val rutanube = "lugaresApp/${usuario}/imagenes/${imagenFile.name}"
 
-            val rutalocal = Uri.fromFile(imagenFile) //ya en nuestro celular
+                val rutalocal = Uri.fromFile(imagenFile) //ya en nuestro celular
 
-            var referencia: StorageReference = Firebase.storage.reference.child(rutanube) //guarda la variable en la nube como un documento
-            referencia.putFile(rutalocal) //sube el documento
-                .addOnSuccessListener {
-                    referencia.downloadUrl.addOnSuccessListener {
-                        val rutaImagen = it.toString()
-                        addLugar(rutaAudio,rutaImagen) // Finalmente se graba la info del lugar
+                var referencia: StorageReference =
+                    Firebase.storage.reference.child(rutanube) //guarda la variable en la nube como un documento
+                referencia.putFile(rutalocal) //sube el documento
+                    .addOnSuccessListener {
+                        referencia.downloadUrl.addOnSuccessListener {
+                            val rutaImagen = it.toString()
+                            addLugar(rutaAudio, rutaImagen) // Finalmente se graba la info del lugar
+                        }
                     }
-                }
-                .addOnFailureListener{
-                    addLugar(rutaAudio,"") //aqui no subio la imagen osea da error
-                }
-        }else{ //no hay audio no se sube
-            addLugar(rutaAudio,"")
-        }
-
+                    .addOnFailureListener {
+                        addLugar(rutaAudio, "") //aqui no subio la imagen osea da error
+                    }
+            } else { //no hay audio no se sube
+                addLugar(rutaAudio, "")
+            }
+            }else { //no hay audio no se sube
+                addLugar(rutaAudio, "")
+            }
     }
     private fun ubicaGPS() {
     val ubicacion: FusedLocationProviderClient=
