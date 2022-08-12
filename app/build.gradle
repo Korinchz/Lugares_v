@@ -82,4 +82,7 @@ dependencies {
     //para la autenticacion de google
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
 
+    //Para interactuar con los mapas de google
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
 }

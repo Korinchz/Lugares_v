@@ -82,10 +82,37 @@ class UpdateLugarFragment : Fragment() {
         binding.btEmail.setOnClickListener{escribirCorreo()}
         binding.btPhone.setOnClickListener{ realizarllamada() }
         binding.btWeb.setOnClickListener{ verweb() }
+        binding.btLocation.setOnClickListener{verMapa()}
+        binding.btWhatsapp.setOnClickListener{enviarWhatsApp()}
         // se indica que esta pantalla tiene un menu personalizado...
         setHasOptionsMenu(true) // esta pantalla tiene opciones de menu
 
         return binding.root
+    }
+
+    private fun enviarWhatsApp() {      //corroborar
+        val telefono = binding.etTelefono.text
+        if(telefono.isNotEmpty()){
+            val intent = Intent(Intent.ACTION_VIEW)
+            val uri = "whatsapp://send?phone=506$telefono&text="+getString(R.string.msg_saludos)
+            intent.setPackage("com.whatsapp")
+            intent.data = Uri.parse(uri)
+            startActivity(intent)
+        }else{
+            Toast.makeText(requireContext(),"Faltan datos",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun verMapa() {  //corroborar
+     val latitud=binding.tvLatitud.text.toString().toDouble()
+     val longitud= binding.tvLongitud.text.toString().toDouble()
+     if (latitud.isFinite() && longitud.isFinite()){   ///coordenadas reales
+         val location = Uri.parse("geo:$latitud,$longitud?z=18")//geolocalizacion
+       val intent = Intent(Intent.ACTION_VIEW,location)
+        startActivity(intent)
+     } else{
+         Toast.makeText(requireContext(),getString(R.string.msg_datos),Toast.LENGTH_SHORT).show()
+     }
     }
 
     private fun verweb() {

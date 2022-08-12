@@ -2,17 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lugares_v">
-
-    <!-- este es para decirle al android que esta app rquiere acceso a hacer llamadas-->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-
-<!-- Estos perimisos se requieren para la geolocalizacion -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <!-- este es para decirle al android que esta app rquiere acceso a hacer llamadas -->
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- Estos perimisos se requieren para la geolocalizacion -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -21,6 +20,7 @@
         android:roundIcon="@drawable/logo_size"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lugares_v">
+
         <activity
             android:name=".Principal"
             android:exported="false"
@@ -34,8 +34,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Esto se requiere para buscar las imagenes capturadas de la cámara -->
+        </activity> <!-- Esto se requiere para buscar las imagenes capturadas de la cámara -->
         <!-- ojo el archivo llamado file_paths en la carpeta xml -->
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -44,7 +43,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 
