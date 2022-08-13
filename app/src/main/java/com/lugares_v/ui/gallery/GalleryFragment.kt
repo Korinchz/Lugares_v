@@ -88,8 +88,8 @@ class GalleryFragment : Fragment() , OnMapReadyCallback{
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 105
             )
         } else {
-            var latitud = 0.0
-            var longitud = 0.0
+            var latitud = 9.97
+            var longitud = 84.00
             localizacion.lastLocation.addOnSuccessListener { location: Location? ->
                 if (location != null) {
                     latitud = location.latitude

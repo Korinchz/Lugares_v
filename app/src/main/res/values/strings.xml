@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Lugares</string>
+   <string name="app_name" translatable="false">Lugares</string> <!-- algo de cloud poner recordar-->
     <string name="default_web_client_idg" translatable="false">362513425463-1t9l6r0uj67343ao3teimpeafe3v998t.apps.googleusercontent.com</string>
     <string name="tv_correo">Correo</string>
     <string name="tv_clave">Contraseña</string>
